@@ -22,7 +22,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__file__)
 
-
 def run_qblast(query_sequence, blast_program, database, output_table):
     result_handle = NCBIWWW.qblast(blast_program, database, query_sequence)
 
@@ -33,9 +32,9 @@ def run_qblast(query_sequence, blast_program, database, output_table):
         for alignment in blast_record.alignments:
             for hsp in alignment.hsps:
                 accession = alignment.accession
-                taxid = accession.split("|")[1]
+                taxid = accession
                 taxonomy = get_taxonomy_from_taxid(taxid)  # Function to get taxonomy based on NCBI TaxID
-                table.append((blast_record.query_id, taxid, taxonomy))
+                table.append((blast_record.query, taxid, taxonomy))
 
     with open(output_table, "w") as table_file:
         table_file.write("Query_ID\tTaxID\tTaxonomy\n")
