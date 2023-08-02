@@ -28,9 +28,9 @@ git clone git@github.com:UKCEH-MolecularEcology/its_classification.git
 cd its_classification
 ```
 
-### Create the `snakemake` environment
+### Create the `conda` environment
 ```bash
-# create the snakemake conda environment
+# create the environment
 conda env create -f requirements.yaml
 
 # Activate the environment
