@@ -106,6 +106,8 @@ rule run_qblast_nt:
         query_fasta=os.path.join(FASTA)
     output:
         table=os.path.join(RESULTS_DIR, "blast/taxonomy_table.txt")
+    log:
+        os.path.join(RESULTS_DIR, "logs/blast_nt.log")
     params:
         blast_program=config["blast"]["program"],
         blast_database=config["blast"]["db"]
