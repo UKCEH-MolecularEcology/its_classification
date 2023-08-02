@@ -3,7 +3,7 @@
 - based on [honeypi](https://github.com/hsgweon/honeypi/blob/master/bin/honeypi)
 
 ## Requirements
-- ASV FASTA from DADA2 or Qiime2.
+- **ASV FASTA** from DADA2 or Qiime2.
 - Pipelines
   - [snakemake](https://snakemake.github.io/) (required)
 - Software
@@ -43,7 +43,7 @@ conda activate its_classifier
   - *amplicon_type:* choose from **ITS1** or **ITS2**
   - *fasta:* provide the path to the ASV FASTA file
   - `data_dir` and `results_dir` need to be provided
-  - *confidence:* adjust the values as required; between 0 to 1
+  - *confidence:* adjust the values as needed (*between 0 to 1*)
 
 ## Running the workflow
 ```bash
