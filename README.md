@@ -1,5 +1,6 @@
 # its_classification
 - Snakemake workflow to run [RDP taxonomic classification](https://github.com/rdpstaff/classifier) on ITS FASTA sequences.
+- based on [honeypi](https://github.com/hsgweon/honeypi/blob/master/bin/honeypi)
 
 ## Requirements
 - ASV FASTA from DADA2 or Qiime2.
