@@ -1,0 +1,29 @@
+############################################################
+# INPUT
+
+# ITS Amplicon type
+amplicon_type: "ITS2"   # USER INPUT REQUIRED; Options: "ITS1" or "ITS2"
+  
+# Directory where the workflow exists
+data_dir: "/ssd0/susbus/data/jenny_miseq"   # USER INPUT REQUIRED;
+
+# ASV FASTA file for input
+fasta: "/ssd0/susbus/data/jenny_miseq/HMEplate1-4_seqs.fasta"   # USER INPUT REQUIRED;
+
+# Directory to save the output to
+results_dir: "/ssd0/susbus/data/jenny_miseq/results"   # USER INPUT REQUIRED;
+
+
+############################################################
+# PARAMETERS
+
+# URL to download the database from
+database:
+  ITS1: "https://sourceforge.net/projects/honeypi/files/Gweon-ITS1-20200325-rdp-trained.tar.gz"
+  ITS2: "https://sourceforge.net/projects/honeypi/files/Gweon-ITS2-20200325-rdp-trained.tar.gz"
+
+# Memory to use for `rdp_classifier`
+mem: "256G"   # CAN BE ADJUSTED (Optional)
+
+# Confidence scores for reformatted taxa
+confidence: [0.5, 0.3, 0.25]   # USER INPUT (Optional)
