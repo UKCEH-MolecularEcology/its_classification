@@ -1,4 +1,4 @@
-name: snakemake
+name: its_classifier
 channels:
   - conda-forge
   - bioconda
