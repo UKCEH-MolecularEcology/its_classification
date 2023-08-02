@@ -110,10 +110,24 @@ rule run_qblast_nt:
         os.path.join(RESULTS_DIR, "logs/blast_nt.log")
     params:
         blast_program=config["blast"]["program"],
-        blast_database=config["blast"]["db"]
+        blast_database=config["blast"]["db"],
+        qblast=os.path.join(SRC_DIR, "run_qblast.py")
     conda:
         os.path.join(ENV_DIR, "biopython.yaml")
     message:
         "Running BLAST on ASV FASTA input"
-    script:
-        "run_qblast.py {input.query_fasta} {params.blast_program} {params.blast_database} {output.table}"
+    shell:
+        "(date && "
+        "{params.qblast} {input.query_fasta} {params.blast_program} {params.blast_database} {output.table} &&"
+        "date) &> {log}"
+
+#        # importing functions for BLAST + Taxonomy
+#        from scripts.utils import run_qblast, get_taxonomy_from_taxid
+#        
+#        # Running BLAST
+#        query_sequence = SeqIO.read(input.query_fasta, "fasta").seq
+#        table = run_qblast(query_sequence, params.blast_program, params.blast_database)
+#        with open(output.table, "w") as table_file:
+#            table_file.write("Query_ID\tTaxID\tTaxonomy\n")
+#            for row in table:
+#                table_file.write("\t".join(row) + "\n")

@@ -23,7 +23,6 @@ logging.basicConfig(
 logger = logging.getLogger(__file__)
 
 
-# Function to run qBLAST
 def run_qblast(query_sequence, blast_program, database, output_table):
     result_handle = NCBIWWW.qblast(blast_program, database, query_sequence)
 
@@ -43,13 +42,11 @@ def run_qblast(query_sequence, blast_program, database, output_table):
         for row in table:
             table_file.write("\t".join(row) + "\n")
 
-# Function to get taxonomy from taxIDs
 def get_taxonomy_from_taxid(taxid):
     # Implement your logic to fetch taxonomy information based on the taxid.
     # Return a dummy taxonomy string for demonstration purposes.
     return f"Dummy Taxonomy for TaxID {taxid}"
 
-# Main function
 if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: python run_qblast.py <input_fasta> <blast_program> <blast_database> <output_table>")
@@ -60,6 +57,6 @@ if __name__ == "__main__":
     blast_database = sys.argv[3]
     output_table = sys.argv[4]
 
-    query_sequence = SeqIO.read(input_fasta, "fasta").seq
-    run_qblast(query_sequence, blast_program, blast_database, output_table)
-
+    for record in SeqIO.parse(input_fasta, "fasta"):
+        query_sequence = record.seq
+        run_qblast(query_sequence, blast_program, blast_database, output_table)
