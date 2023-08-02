@@ -1,9 +1,27 @@
 #!/usr/bin/env python
 
-# importing relevant modules 
-import sys
+###########
+# MODULES #
+###########
+# importing relevant modules
+import os, sys
+import logging
 from Bio.Blast import NCBIWWW, NCBIXML
 from Bio import SeqIO
+
+
+###########
+# LOGGING #
+###########
+# logger
+logging.basicConfig(
+    filename=snakemake.log[0],
+    filemode="w",
+    level=logging.DEBUG,
+    format='[%(asctime)s] %(name)s %(levelname)s: %(message)s'
+)
+logger = logging.getLogger(__file__)
+
 
 # Function to run qBLAST
 def run_qblast(query_sequence, blast_program, database, output_table):
