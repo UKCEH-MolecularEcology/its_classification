@@ -27,3 +27,8 @@ mem: "256G"   # CAN BE ADJUSTED (Optional)
 
 # Confidence scores for reformatted taxa
 confidence: [0.5, 0.3, 0.25]   # USER INPUT (Optional)
+
+# BLAST parameters
+blast:
+  program: "blastn"
+  db: "nt"

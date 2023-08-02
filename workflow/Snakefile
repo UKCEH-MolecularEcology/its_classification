@@ -39,7 +39,8 @@ AMPLICON_TYPE = config["amplicon_type"]
 # Run
 rule all:
     input:
-        expand(os.path.join(RESULTS_DIR, "taxonomy/assigned_taxonomy_filtered_{confidence}.txt"), confidence=CONFIDENCE)
+        expand(os.path.join(RESULTS_DIR, "taxonomy/assigned_taxonomy_filtered_{confidence}.txt"), confidence=CONFIDENCE),
+        os.path.join(RESULTS_DIR, "blast/taxonomy_table.txt")
     output:
         touch("status/rdp_classifier.done")
 
@@ -99,3 +100,18 @@ rule reformat:
         "python3 {params.SRC} -i {input} -o {output} -c {wildcards.confidence} && "
         "date) &> {log}"
 
+# Running BLAST
+rule run_qblast_nt:
+    input:
+        query_fasta=os.path.join(FASTA)
+    output:
+        table=os.path.join(RESULTS_DIR, "blast/taxonomy_table.txt")
+    params:
+        blast_program=config["blast"]["program"],
+        blast_database=config["blast"]["db"]
+    conda:
+        os.path.join(ENV_DIR, "biopython.yaml")
+    message:
+        "Running BLAST on ASV FASTA input"
+    script:
+        "run_qblast.py {input.query_fasta} {params.blast_program} {params.blast_database} {output.table}"
