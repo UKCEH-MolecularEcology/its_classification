@@ -40,6 +40,7 @@ conda activate its_classifier
 ### Set up the run
 - Edit the `config/config.yaml`
 - Following items in the `config.yaml` file need *USER input*
+  - *STEPS:* run either 'rdp' or 'blast' or both as needed
   - *amplicon_type:* choose from **ITS1** or **ITS2**
   - *fasta:* provide the path to the ASV FASTA file
   - `data_dir` and `results_dir` need to be provided
