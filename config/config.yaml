@@ -1,4 +1,11 @@
 ############################################################
+# STEPS
+
+# Next the following steps should be run
+steps: ["rdp", "blast"]
+
+
+############################################################
 # INPUT
 
 # ITS Amplicon type
