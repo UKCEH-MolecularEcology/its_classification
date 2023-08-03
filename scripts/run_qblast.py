@@ -22,8 +22,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__file__)
 
+
+##########
+# qBLAST #
+#########
 def run_qblast(query_sequence, blast_program, database, output_table):
+    print(f"Running {blast_program} BLAST against {database}...")
     result_handle = NCBIWWW.qblast(blast_program, database, query_sequence)
+    print("BLAST search completed!")
 
     blast_records = NCBIXML.parse(result_handle)
 
@@ -41,6 +47,8 @@ def run_qblast(query_sequence, blast_program, database, output_table):
         for row in table:
             table_file.write("\t".join(row) + "\n")
 
+    print(f"Taxonomy table written to {output_table}")
+
 def get_taxonomy_from_taxid(taxid):
     # Implement your logic to fetch taxonomy information based on the taxid.
     # Return a dummy taxonomy string for demonstration purposes.
@@ -56,6 +64,9 @@ if __name__ == "__main__":
     blast_database = sys.argv[3]
     output_table = sys.argv[4]
 
+    print(f"Reading input FASTA file: {input_fasta}...")
     for record in SeqIO.parse(input_fasta, "fasta"):
         query_sequence = record.seq
+        print(f"Processing query sequence: {record.id}...")
         run_qblast(query_sequence, blast_program, blast_database, output_table)
+
