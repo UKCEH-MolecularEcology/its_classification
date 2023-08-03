@@ -2,7 +2,7 @@
 # STEPS
 
 # Next the following steps should be run
-steps: ["rdp", "blast"]  # USER INPUT REQUIRED; Options: ["rdp"] or ["blast"] or ["rdp", "blast"]
+steps: ["rdp"]  # USER INPUT REQUIRED; Options: ["rdp"] or ["blast"] or ["rdp", "blast"]
 
 
 ############################################################
